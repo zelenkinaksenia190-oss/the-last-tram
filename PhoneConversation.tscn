@@ -1,0 +1,211 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/phone_conversation.gd" id="1_call"]
+[ext_resource type="AudioStream" path="res://assets/audio/phone-ring.wav" id="2_ring"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBox_panel"]
+bg_color = Color(0.045, 0.075, 0.06, 0.96)
+border_width_left = 2
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.6, 0.51, 0.32, 0.65)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_left = 3
+corner_radius_bottom_right = 3
+content_margin_left = 24.0
+content_margin_right = 24.0
+content_margin_top = 19.0
+content_margin_bottom = 17.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBox_button"]
+bg_color = Color(0.13, 0.18, 0.14, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.48, 0.45, 0.3, 0.6)
+content_margin_left = 14.0
+content_margin_right = 14.0
+content_margin_top = 8.0
+content_margin_bottom = 8.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBox_hover"]
+bg_color = Color(0.25, 0.29, 0.18, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.72, 0.64, 0.39, 0.85)
+content_margin_left = 14.0
+content_margin_right = 14.0
+content_margin_top = 8.0
+content_margin_bottom = 8.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBox_empty"]
+
+[sub_resource type="Theme" id="Theme_call"]
+default_font_size = 19
+Button/colors/font_color = Color(0.85, 0.83, 0.69, 1)
+Button/colors/font_hover_color = Color(0.98, 0.93, 0.75, 1)
+Button/font_sizes/font_size = 18
+Button/styles/normal = SubResource("StyleBox_button")
+Button/styles/hover = SubResource("StyleBox_hover")
+Button/styles/pressed = SubResource("StyleBox_hover")
+Button/styles/focus = SubResource("StyleBox_hover")
+Label/colors/font_color = Color(0.84, 0.83, 0.7, 1)
+
+[node name="PhoneConversation" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme = SubResource("Theme_call")
+script = ExtResource("1_call")
+
+[node name="PhoneHotspot" type="Button" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 561.0
+offset_top = 497.0
+offset_right = 641.0
+offset_bottom = 565.0
+tooltip_text = "Ответить Виктору"
+mouse_default_cursor_shape = 2
+focus_mode = 0
+theme_override_styles/normal = SubResource("StyleBox_empty")
+theme_override_styles/hover = SubResource("StyleBox_empty")
+theme_override_styles/pressed = SubResource("StyleBox_empty")
+theme_override_styles/focus = SubResource("StyleBox_empty")
+
+[node name="Incoming" type="PanelContainer" parent="."]
+visible = false
+layout_mode = 0
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = -365.0
+offset_right = -28.0
+offset_top = -184.0
+offset_bottom = -28.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBox_panel")
+
+[node name="Content" type="VBoxContainer" parent="Incoming"]
+layout_mode = 2
+theme_override_constants/separation = 9
+
+[node name="Caption" type="Label" parent="Incoming/Content"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.62, 0.66, 0.52, 1)
+theme_override_font_sizes/font_size = 13
+text = "ВХОДЯЩИЙ ЗВОНОК"
+
+[node name="Caller" type="Label" parent="Incoming/Content"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.91, 0.85, 0.65, 1)
+theme_override_font_sizes/font_size = 25
+text = "Виктор"
+
+[node name="Answer" type="Button" parent="Incoming/Content"]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "Ответить  ·  E"
+
+[node name="DialoguePanel" type="PanelContainer" parent="."]
+visible = false
+layout_mode = 0
+anchor_right = 1.0
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 100.0
+offset_right = -100.0
+offset_top = -280.0
+offset_bottom = -26.0
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBox_panel")
+
+[node name="Content" type="VBoxContainer" parent="DialoguePanel"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Header" type="HBoxContainer" parent="DialoguePanel/Content"]
+layout_mode = 2
+
+[node name="Speaker" type="Label" parent="DialoguePanel/Content/Header"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.79, 0.67, 0.42, 1)
+theme_override_font_sizes/font_size = 15
+text = "ВИКТОР"
+
+[node name="Caption" type="Label" parent="DialoguePanel/Content/Header"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.48, 0.59, 0.46, 1)
+theme_override_font_sizes/font_size = 12
+text = "ТЕЛЕФОН / 16:42"
+
+[node name="Body" type="RichTextLabel" parent="DialoguePanel/Content"]
+custom_minimum_size = Vector2(0, 70)
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+theme_override_colors/default_color = Color(0.89, 0.86, 0.73, 1)
+theme_override_font_sizes/normal_font_size = 23
+bbcode_enabled = false
+fit_content = true
+scroll_active = false
+
+[node name="Choices" type="VBoxContainer" parent="DialoguePanel/Content"]
+visible = false
+layout_mode = 2
+theme_override_constants/separation = 7
+
+[node name="Next" type="Button" parent="DialoguePanel/Content"]
+layout_mode = 2
+size_flags_horizontal = 8
+mouse_default_cursor_shape = 2
+text = "Дальше  →  Enter"
+
+[node name="Result" type="PanelContainer" parent="."]
+visible = false
+layout_mode = 0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 180.0
+offset_right = -180.0
+offset_top = -210.0
+offset_bottom = -26.0
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBox_panel")
+
+[node name="Content" type="VBoxContainer" parent="Result"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Caption" type="Label" parent="Result/Content"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.79, 0.67, 0.42, 1)
+theme_override_font_sizes/font_size = 13
+text = "СООБЩЕНИЕ ОТ ВИКТОРА"
+
+[node name="Message" type="Label" parent="Result/Content"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 19
+autowrap_mode = 3
+
+[node name="Replay" type="Button" parent="Result/Content"]
+layout_mode = 2
+size_flags_horizontal = 8
+text = "Повторить звонок"
+
+[node name="Ringtone" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_ring")
+volume_db = -15.0

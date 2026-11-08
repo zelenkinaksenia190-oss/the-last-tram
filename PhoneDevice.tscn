@@ -1,0 +1,74 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/phone_sms.gd" id="1_device"]
+[ext_resource type="Script" path="res://scripts/touch_phone_view.gd" id="2_view"]
+[ext_resource type="AudioStream" path="res://assets/audio/phone-key.wav" id="4_key"]
+[ext_resource type="AudioStream" path="res://assets/audio/sms-notification.wav" id="5_sms"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBox_empty"]
+
+[node name="PhoneDevice" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_device")
+
+[node name="Dim" type="ColorRect" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0.025, 0.045, 0.03, 0.12)
+mouse_filter = 2
+
+[node name="PhoneHotspot" type="Button" parent="."]
+layout_mode = 0
+tooltip_text = "Взять телефон"
+mouse_default_cursor_shape = 2
+focus_mode = 0
+theme_override_styles/normal = SubResource("StyleBox_empty")
+theme_override_styles/hover = SubResource("StyleBox_empty")
+theme_override_styles/pressed = SubResource("StyleBox_empty")
+theme_override_styles/focus = SubResource("StyleBox_empty")
+
+[node name="Prompt" type="Button" parent="."]
+layout_mode = 0
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = -100.0
+offset_right = 100.0
+offset_top = -62.0
+offset_bottom = -22.0
+focus_mode = 0
+theme_override_colors/font_color = Color(0.84, 0.82, 0.65, 1)
+theme_override_colors/font_hover_color = Color(0.98, 0.91, 0.72, 1)
+theme_override_colors/font_shadow_color = Color(0.025, 0.04, 0.03, 0.8)
+theme_override_constants/shadow_offset_y = 2
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBox_empty")
+theme_override_styles/hover = SubResource("StyleBox_empty")
+theme_override_styles/pressed = SubResource("StyleBox_empty")
+theme_override_styles/focus = SubResource("StyleBox_empty")
+text = "Телефон E"
+
+[node name="Handset" type="Control" parent="."]
+visible = false
+layout_mode = 0
+offset_right = 440.0
+offset_bottom = 660.0
+script = ExtResource("2_view")
+
+[node name="KeySound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_key")
+volume_db = -21.0
+
+[node name="SmsSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_sms")
+volume_db = -10.0

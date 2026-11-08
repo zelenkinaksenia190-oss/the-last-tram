@@ -1,0 +1,15 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/arrival.gd" id="1_arrival"]
+[ext_resource type="PackedScene" path="res://PhoneDevice.tscn" id="2_phone"]
+
+[node name="Arrival" type="Node2D"]
+texture_filter = 1
+script = ExtResource("1_arrival")
+
+[node name="Interface" type="CanvasLayer" parent="."]
+
+[node name="Phone" parent="Interface" instance=ExtResource("2_phone")]
+dialogue_file = "res://dialogue/pavel_arrival_sms.json"
+first_message_delay = 2.5
+hint_delay = 1.5
